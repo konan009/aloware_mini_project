@@ -1,7 +1,7 @@
 <template>
    <div>
       <h3>Comment Section:</h3>
-      <CommentComponent v-for="(node, x)  in allComments" :key="x" :node="node" :parent_ids="[node.id]"/>
+      <CommentComponent v-for="(node, x)  in allComments" :key="x" :node="node" :parent_ids="[node.id]" />
    </div>
 </template>
 
@@ -36,11 +36,14 @@ export default {
 </script>
 <style >
 .comment {
+  width: 300px;
   display: block;
   position: relative;
   padding-left: 20px;
 }
-
+.comment_icon{
+  font-size: 10px;
+}
 .comment_by{
   position: absolute;
   bottom: -3px;
@@ -56,13 +59,6 @@ export default {
   border-radius: 5px;
   text-align: left;
   position: relative;
-  cursor: pointer;
-}
-i {
-  position: absolute;
-  bottom: -3px;
-  right: 3px;
-  color: #fff;
   cursor: pointer;
 }
 .legend {

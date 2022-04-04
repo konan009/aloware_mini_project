@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\CommentsParentsChild;
 use DB;
 
 class Comments extends Model
@@ -35,6 +36,12 @@ class Comments extends Model
         $result = DB::table('comments_parent_child')->insert( $new_comment_pivot_record );
         
         return $new_comment_pivot_record;
+    }
+
+    
+    public function parents_child()
+    {
+        return $this->hasMany(CommentsParentsChild::class, 'child_id');
     }
 
 }

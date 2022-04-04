@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\CommentsResources\CommentsSqlResource;
+use App\Http\CommentsResources\NewCommentResource;
+
 use App\Http\CommentsRequests\CommentsRequest;
 
 use App\Http\CommentsRepository\CommentsRepositoryInterface;
@@ -51,7 +53,7 @@ class CommentsController extends Controller
     {
         try {
             $new_comments = $this->comments->add_comments( $request );
-            return  $new_comments;
+            return (new NewCommentResource( $new_comments ));
         } catch (Exception $e) {
             throw $e;
         }

@@ -13,7 +13,7 @@ class CommentsRepository implements CommentsRepositoryInterface{
     }
 
     public function get_comments(){
-        return Comments::comments_custom_sql()->get();
+        return Comments::with('parents_child')->get();
     }
 
     public function add_comments(CommentsRequest $request){
@@ -27,10 +27,7 @@ class CommentsRepository implements CommentsRepositoryInterface{
             $new_comment->save();
             $parents_id = Comments::insert_parent_child_id( $request->parent_ids ,  $new_comment->id );
             DB::commit();
-            return [ 
-                'new_comment' => $new_comment, 
-                'ids' => $parents_id 
-            ];
+            return $new_comment;
         } catch (Exception $e) {
             DB::rollback();
             throw $e;
