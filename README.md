@@ -1,1 +1,1 @@
-# aloware_mini_project
+# Laravel + VueJS Mini Project
